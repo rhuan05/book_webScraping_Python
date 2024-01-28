@@ -1,14 +1,21 @@
 from urllib.request import urlopen
+from urllib.request import HTTPError
 from bs4 import BeautifulSoup
-import datetime
 import random
 import re
 
 def getLinks(articleUrl):
-    html = urlopen('http://en.wikipedia.org{}'.format(articleUrl))
-    bs = BeautifulSoup(html, 'html.parser')
-    return bs.find('div', {'id':'bodyContent'}).find_all('a',
-        href=re.compile('^(/wiki/((?!:).)*$)'))
+    try:
+        html = urlopen('http://en.wikipedia.org{}'.format(articleUrl))
+    except HTTPError as e:
+        return print('Erro ao buscar o link enviado: {}'.format(e))
+    
+    try:
+        bs = BeautifulSoup(html, 'html.parser')
+        return bs.find('div', {'id':'bodyContent'}).find_all('a',
+            href=re.compile('^(/wiki/((?!:).)*$)'))
+    except AttributeError as e:
+        print('Erro ao buscar o conteúdo da página: {}'.format(e))
 
 links = getLinks('/wiki/Kevin_Bacon')
 while len(links) > 0:
