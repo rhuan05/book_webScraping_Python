@@ -8,14 +8,14 @@ def getLinks(articleUrl):
     try:
         html = urlopen('http://en.wikipedia.org{}'.format(articleUrl))
     except HTTPError as e:
-        return print('Erro ao buscar o link enviado: {}'.format(e))
+        return print('Erro ao buscar o link: http://en.wikipedia.org{}'.format(articleUrl))
     
     try:
         bs = BeautifulSoup(html, 'html.parser')
         return bs.find('div', {'id':'bodyContent'}).find_all('a',
             href=re.compile('^(/wiki/((?!:).)*$)'))
     except AttributeError as e:
-        print('Erro ao buscar o conteúdo da página: {}'.format(e))
+        print('Erro ao buscar o conteúdo da página: http://en.wikipedia.org{}'.format(articleUrl))
 
 links = getLinks('/wiki/Kevin_Bacon')
 while len(links) > 0:
