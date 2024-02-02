@@ -67,9 +67,11 @@ siteData = [
     'h1.content-head__title', 'p.content-text__container']
 ]
 
-websites = []
+#'Salvando' a tag de título, a tag de conteúdo e o link do site para uso futuro
+website = []
 for row in siteData:
-    websites.append(Website(row[0], row[1], row[2], row[3]))
+    website.append(Website(row[0], row[1], row[2], row[3]))
 
-crawler.parse(websites[0], 'https://ge.globo.com/futebol/times/palmeiras/noticia/2024/02/01/'\
+#Chamando a função '.parse()' que vai buscar o título e o conteúdo do site de acordo com o primeiro parâmetro... o website.
+crawler.parse(website[0], 'https://ge.globo.com/futebol/times/palmeiras/noticia/2024/02/01/'\
                 'dudu-denuncia-golpe-de-r-18-milhoes-policia-investiga-ex-braco-direito-do-jogador-do-palmeiras.ghtml')
