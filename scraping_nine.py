@@ -64,7 +64,9 @@ crawler = Crawler()
 
 siteData = [
     ['Globo', 'https://ge.globo.com/',
-    'h1.content-head__title', 'p.content-text__container']
+    'h1.content-head__title', 'p.content-text__container'],
+    ['Tecmundo', 'https://www.tecmundo.com.br/',
+    'h1#js-article-title', 'div.tec--article__body']
 ]
 
 #'Salvando' a tag de título, a tag de conteúdo e o link do site para uso futuro
@@ -75,3 +77,5 @@ for row in siteData:
 #Chamando a função '.parse()' que vai buscar o título e o conteúdo do site de acordo com o primeiro parâmetro... o website.
 crawler.parse(website[0], 'https://ge.globo.com/futebol/times/palmeiras/noticia/2024/02/01/'\
                 'dudu-denuncia-golpe-de-r-18-milhoes-policia-investiga-ex-braco-direito-do-jogador-do-palmeiras.ghtml')
+crawler.parse(website[1], 'https://www.tecmundo.com.br/mercado/'\
+              '279376-sumiram-mapa-7-big-techs-deixaram-existir.htm')
