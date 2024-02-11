@@ -6,7 +6,7 @@ class ArticleSpider(CrawlSpider):
     allowed_domains = ['wikipedia.org']
     start_urls = ['http://en.wikipedia.org/wiki/'
                   'Benevolent_dictator_for_life']
-    rules = [Rule((allow=r'.*'), callback='parse_items',
+    rules = [Rule(LinkExtractor(allow=r'.*'), callback='parse_items',
                   follow=True)]
     
     def parse_items(self, response):
@@ -18,4 +18,4 @@ class ArticleSpider(CrawlSpider):
         print('URL is: {}'.format(url))
         print('TITLE is: {}'.format(title))
         print('TEXT is: {}'.format(text))
-        print('LAST UPDATED: {}'.format(lastUpdated))LinkExtractor
+        print('LAST UPDATED: {}'.format(lastUpdated))
